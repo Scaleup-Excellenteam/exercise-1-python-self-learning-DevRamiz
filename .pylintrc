@@ -1,8 +1,2 @@
-[MASTER]
-# Set the Python path if needed, or leave it blank to use system defaults
-
 [MESSAGES CONTROL]
-
-
-[FORMAT]
-max-line-length=120
+disable=C0114,C0115,C0116,C0103,W0613,W0127,W0621,W0404,C0411,C0415,R1710
