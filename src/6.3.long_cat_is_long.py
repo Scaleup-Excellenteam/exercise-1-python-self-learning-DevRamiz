@@ -1,9 +1,9 @@
-from collections import defaultdict
+from collections import Counter
 import re
 
 def long_cat_is_long(text: str) -> dict:
-    words = re.findall(r'\b[a-zA-Z]{2,}\b', text)
-    counter = defaultdict(int)
+    words = re.findall(r'\b[a-zA-Z]+\b', text)
+    count = {}
     for word in words:
-        counter[word] += 1
-    return dict(counter)
+        count[word] = count.get(word, 0) + 1
+    return count

@@ -1,13 +1,15 @@
-from inspect import signature
-
 def cup_of_join(*lists, sep='-'):
-    import inspect
-    called_with_sep = 'sep' in inspect.getcallargs(cup_of_join, *lists, sep=sep)
     result = []
+    explicit_sep = 'sep' in locals() or 'sep' in globals()
+    if not lists:
+        return result
     for i, lst in enumerate(lists):
-        if i > 0 and called_with_sep:
+        if i > 0:
             result.append(sep)
-        result.extend(lst)
-    if len(lists) == 1 and called_with_sep:
+        if lst:
+            result.extend(lst)
+        else:
+            result.append(sep)
+    if len(lists) == 1:
         result.append(sep)
     return result
