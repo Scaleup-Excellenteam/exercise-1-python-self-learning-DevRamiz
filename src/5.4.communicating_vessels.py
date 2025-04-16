@@ -1,2 +1,6 @@
-def interleave(a: list, b: list) -> list:
-    return [val for pair in zip(a, b) for val in pair]
+from typing import Generator
+
+def generator_interleave(a: list, b: list) -> Generator:
+    for x, y in zip(a, b):
+        yield x
+        yield y
