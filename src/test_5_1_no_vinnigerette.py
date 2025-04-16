@@ -6,10 +6,10 @@ from unittest.mock import patch
 
 def load_no_vinnigrette():
     file_path = os.path.join(os.path.dirname(__file__), '../src/5.1.no_vinnigrette.py')
-    spec = importlib.util.spec_from_file_location("no_vinnigrete", file_path)
+    spec = importlib.util.spec_from_file_location("no_vinnigrette", file_path)
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return module.no_vinnigrete
+    return module.no_vinnigrette
 
 
 no_vinnigrette = load_no_vinnigrette()
