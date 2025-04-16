@@ -1,6 +1,7 @@
 import time
 
-def running_2000(func, *args):
+def running_2000(func, *args, **kwargs):
     start = time.time()
-    func(*args)
-    return time.time() - start
+    func(*args, **kwargs)
+    end = time.time()
+    return end - start

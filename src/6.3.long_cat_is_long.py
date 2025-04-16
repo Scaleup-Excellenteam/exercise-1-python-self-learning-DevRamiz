@@ -1,6 +1,6 @@
-import re
 from collections import Counter
+import re
 
-def long_cat_is_long(text):
+def long_cat_is_long(text: str) -> dict:
     words = re.findall(r'\b[a-z]+\b', text.lower())
-    return Counter(words)
+    return dict(Counter(words))

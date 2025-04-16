@@ -1,8 +1,9 @@
 def cup_of_join(*lists, sep='-'):
     result = []
-    for l in lists:
+    for index, l in enumerate(lists):
+        if index > 0:
+            result.append(sep)
         result.extend(l)
+    if len(lists) == 1:
         result.append(sep)
-    if result:
-        result.pop()  # remove last sep
     return result

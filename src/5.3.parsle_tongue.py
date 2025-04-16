@@ -1,2 +1,2 @@
 def parsle_tongue():
-    return iter(["hidden", "message", "here"])
+    return iter(["python", "isawesome", "welldone", "goodjob"])
