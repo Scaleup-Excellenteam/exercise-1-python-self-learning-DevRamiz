@@ -1,7 +1,6 @@
-def running_2000():
-    for i in range(1, 2001):
-        print(i)
+import time
 
-
-if __name__ == '__main__':
-    running_2000()
+def running_2000(func, *args):
+    start = time.time()
+    func(*args)
+    return time.time() - start

@@ -1,4 +1,6 @@
-def long_cat(strings: list[str]) -> str:
-    return "".join(strings)
+import re
+from collections import Counter
 
-long_cat_is_long = long_cat
+def long_cat_is_long(text):
+    words = re.findall(r'\b[a-z]+\b', text.lower())
+    return Counter(words)

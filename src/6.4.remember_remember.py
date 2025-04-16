@@ -1,4 +1,7 @@
-def remember_remember(lines: list[str]) -> list[str]:
-    return [line.strip() for line in lines if line.strip()]
+from PIL import Image
 
-remember_remember = remember_remember
+def remember_remember(path):
+    img = Image.open(path)
+    pixels = img.convert("L").getdata()
+    chars = [chr(p) for p in pixels if 32 <= p <= 126]
+    return ''.join(chars)
