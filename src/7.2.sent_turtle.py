@@ -1,8 +1,8 @@
 class PostOffice:
     def __init__(self, users):
         self.inboxes = {user: [] for user in users}
+        self.counter = 1
         self.messages = {}
-        self.counter = 0
 
     def send_message(self, sender, recipient, title, body, urgent=False):
         if recipient not in self.inboxes:
@@ -13,17 +13,25 @@ class PostOffice:
             "to": recipient,
             "title": title,
             "body": body,
-            "urgent": urgent,
-            "read": False
+            "unread": True,
+            "urgent": urgent
         }
         self.messages[self.counter] = msg
-        self.inboxes[recipient].append(self.counter)
+        self.inboxes[recipient].append(msg)
         self.counter += 1
         return msg["id"]
 
-    def read(self, user):
-        if self.inboxes[user]:
-            msg_id = self.inboxes[user].pop(0)
-            self.messages[msg_id]["read"] = True
-            return self.messages[msg_id]
-        return None
+    def read_inbox(self, user, n=None):
+        inbox = self.inboxes[user]
+        messages = inbox[:n] if n else inbox
+        for msg in messages:
+            msg["unread"] = False
+        return messages
+
+    def search_inbox(self, user, keyword):
+        return [msg for msg in self.inboxes[user]
+                if keyword in msg["title"] or keyword in msg["body"]]
+
+    @property
+    def boxes(self):
+        return self.inboxes

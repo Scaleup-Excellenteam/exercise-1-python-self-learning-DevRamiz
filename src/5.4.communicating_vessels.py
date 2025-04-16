@@ -1,9 +1,11 @@
 from typing import Generator
+from itertools import zip_longest
 
 def generator_interleave(*args) -> Generator:
-    for group in zip(*args):
+    for group in zip_longest(*args, fillvalue=None):
         for item in group:
-            yield item
+            if item is not None:
+                yield item
 
 def interleave(*args):
     return list(generator_interleave(*args))

@@ -1,9 +1,7 @@
 def cup_of_join(*lists, sep='-'):
     result = []
-    for index, l in enumerate(lists):
-        if index > 0:
-            result.append(sep)
+    for i, l in enumerate(lists):
         result.extend(l)
-    if len(lists) == 1:
-        result.append(sep)
+        if i != len(lists) - 1 or len(lists) == 1:
+            result.append(sep)
     return result
