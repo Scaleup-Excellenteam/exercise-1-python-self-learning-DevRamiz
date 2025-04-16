@@ -12,7 +12,6 @@ permissions:
 
 jobs:
   build:
-    if: startsWith(github.head_ref, 'feat/') || startsWith(github.head_ref, 'fix/')
     runs-on: ubuntu-latest
 
     steps:
