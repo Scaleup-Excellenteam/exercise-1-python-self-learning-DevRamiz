@@ -17,7 +17,10 @@ class PostOffice:
             "urgent": urgent
         }
         self.messages[self.counter] = msg
-        self.inboxes[recipient].append(msg)
+        if urgent:
+            self.inboxes[recipient].insert(0, msg)
+        else:
+            self.inboxes[recipient].append(msg)
         self.counter += 1
         return msg["id"]
 
@@ -29,8 +32,11 @@ class PostOffice:
         return messages
 
     def search_inbox(self, user, keyword):
-        return [msg for msg in self.inboxes[user]
-                if keyword in msg["title"] or keyword in msg["body"]]
+        keyword = keyword.lower()
+        return [
+            msg for msg in self.inboxes[user]
+            if keyword in msg["title"].lower() or keyword in msg["body"].lower()
+        ]
 
     @property
     def boxes(self):
